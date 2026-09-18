@@ -27,3 +27,36 @@ form.appendChild(gomb);
 
 document.body.appendChild(form);
 document.body.appendChild(eredmeny);
+
+// Submit 
+form.addEventListener("submit", function(event){
+    event.preventDefault();
+
+    const nev = nevInput.value.trim();
+    const email = emailInput.value.trim();
+
+    // Validálás
+    if (nev === "") {
+        eredmeny.textContent = "A név megadása kötelező.";
+        return;
+    }
+
+    if (nev.lenght < 3 ) {
+        eredmeny.textContent = "A név legalább 3 karakter legyen.";
+        return;
+    }
+
+    if (email === "") {
+        eredmeny.textContent = "Az email megadása kötelező.";
+        return;
+    }
+
+    if (!email.includes("@")) {
+        eredmeny.textContent = "Nem megfelelő email cím.";
+        return;
+    }
+
+    // Ha minden megfelelő
+    eredmeny.textContent = "Név: " + nev + " | Email: " + email;
+
+});
